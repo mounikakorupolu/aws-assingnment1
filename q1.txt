@@ -34,4 +34,7 @@ ctrl d
 
 by using ipv4 we get webpage in browser
 
+we can create snapshots of root volume of instance and use it in another region
+
+
 
