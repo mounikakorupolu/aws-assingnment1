@@ -1,0 +1,34 @@
+first of all we create lambda  and then create SNS topic which is in N.virginia region since it has sms feature
+
+and then subscribe the topic with mobie nmber as endpoint.By writing code in lambda and after execution, 
+
+it publishes into topic and we will get message.
+
+(code)
+
+from __future__ import print_function
+  
+import json
+import boto3
+  
+print('loading function')
+  
+def lambda_handler(event, context):
+  
+    # Parse the JSON message 
+    eventText = json.dumps(event)
+  
+    # Print the parsed JSON message to the console; you can view this text in the Monitoring tab in the Lambda console or in the CloudWatch Logs console
+    print('Received event: ', eventText)
+  
+    # Create an SNS client
+    sns = boto3.client('sns')
+  
+    # Publish a message to the specified topic
+    response = sns.publish (
+      TopicArn = 'arn:aws:sns:us-east-1:488599217855:about_me',
+      Message = eventText
+    )
+  
+    print(response)
+
