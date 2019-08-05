@@ -1,0 +1,8 @@
+create lambda function by using following python code
+
+import json
+def main_handler(event, context):
+    return {
+        "statusCode": 200,
+        "body": json.dumps('my name is mounika')
+    }
