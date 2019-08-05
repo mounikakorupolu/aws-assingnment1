@@ -1,0 +1,41 @@
+
+As a root user we can create group  for these 10 users by organisation console  and assign them roles.
+
+Assign the Identity-based policies to the ten group of people by enabling all features.
+
+By default, it attaches an AWS managed policy called FullAWSAccess to all roots, OUs, and accounts.They can access any service or operation.
+
+we can restrict permissions,Blacklist all these 10 users and add the policy that they are restricted to use the AWS account when they are not connected to organization network.
+
+so that users and roles in the affected accounts can then exercise only that level of access,
+ 
+even if their IAM policies allow all actions
+
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Allowaccess",
+            "Effect": "Allow",
+            "Principal": {
+				"AWS":[
+						"arn:aws:iam::094697565664:user/Mounika",
+                        "arn:aws:iam::094697565664:user/Manasa",
+                        "arn:aws:iam::094697565664:user/manu",
+                        "arn:aws:iam::094697565664:user/Mam",
+                        "arn:aws:iam::094697565664:user/Bhargav",
+                        "arn:aws:iam::094697565664:user/Lisa",
+                        "arn:aws:iam::094697565664:user/Nanny",
+                        "arn:aws:iam::094697565646:user/Siva",
+                        "arn:aws:iam::087695765465:user/Danny",
+                        "arn:aws:iam::087695765465:user/Mouni"
+]
+},
+            "Action": "access",
+            "Resource": "individual AWS account/*",
+            "Condition": { when the members are connected to organization network only
+                         }
+        }
+    ]
+}
